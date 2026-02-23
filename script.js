@@ -1,3 +1,4 @@
+//Game Board creation
 
 const gameBoard = (()=> {
     let boardArray = ["", "", "", "", "", "", "", "", ""];
@@ -18,6 +19,7 @@ const gameBoard = (()=> {
     };
 })();
 
+//Score Increases with player
 
 function createPlayer(name,point){
     
@@ -30,6 +32,7 @@ function createPlayer(name,point){
     return {name,point,increasePoint,getScore};
 }
 
+//Player Creation
 
 const gameController = (() => {
 
@@ -55,6 +58,8 @@ const gameController = (() => {
         currentPlayer = currentPlayer === player1 ? player2 : player1
     }
 
+//Winning Combos
+
     const checkWin = () => {
         const board = gameBoard.getBoard();
        const marker = currentPlayer.point;
@@ -74,6 +79,9 @@ const gameController = (() => {
         return combo.every(index => board[index] === marker);
     });
 };
+
+// Playing 5 Rounds
+
     const playRound = (index)=> {
         if(gameOver) return;
 
@@ -118,10 +126,12 @@ const getCurrentPlayer = () => {
     return currentPlayer? currentPlayer.name : "";
 };
 
+//Display Scores
+
 const getScores = () => {
 
     if(!player1 || !player2){
-        return {
+return {
     
     player1Name: "",
     player2Name: "",
@@ -137,6 +147,7 @@ return {
 };
 };
 
+//Restart game 
 const restartGame = () => {
     gameBoard.resetBoard();
     gameOver = false;
